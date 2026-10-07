@@ -1,6 +1,7 @@
 package com.shopflow;
 
 import java.util.Scanner;
+import java.math.BigDecimal;
 
 /**
  * Starting point of the ShopFlow console app.
@@ -25,11 +26,13 @@ public class Main {
             int choice = Integer.parseInt(input);
 
             switch (choice) {
-                case 1 -> System.out.println("Coming soon");
-                case 2 -> System.out.println("Coming soon");
                 case 0 -> {
-                    System.out.println("Goodbye!");
-                    isRunning = false;
+                    Product laptop = new Product(1, "Laptop", new BigDecimal("55000.00"), 10);
+                    Product mouse = new Product(2, "Mouse", new BigDecimal("1500.00"), 10);
+                    Product keyboard = new Product(3, "Keyboard", new BigDecimal("12000.00"), 10);
+                    System.out.println(laptop);
+                    System.out.println(mouse);
+                    System.out.println(keyboard);
                 }
                 default -> System.out.println("Invalid choice");
             }
