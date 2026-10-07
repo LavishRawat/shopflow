@@ -26,13 +26,18 @@ public class Main {
             int choice = Integer.parseInt(input);
 
             switch (choice) {
-                case 0 -> {
+                case 1 -> {
                     Product laptop = new Product(1, "Laptop", new BigDecimal("55000.00"), 10);
                     Product mouse = new Product(2, "Mouse", new BigDecimal("1500.00"), 10);
                     Product keyboard = new Product(3, "Keyboard", new BigDecimal("12000.00"), 10);
                     System.out.println(laptop);
                     System.out.println(mouse);
                     System.out.println(keyboard);
+                }
+                case 2 -> System.out.println("Coming soon");
+                case 0 -> {
+                    System.out.println("Goodbye!");
+                    isRunning = false;
                 }
                 default -> System.out.println("Invalid choice");
             }
