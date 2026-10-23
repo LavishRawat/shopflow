@@ -14,6 +14,9 @@ public class Main {
         boolean isRunning = true;
         System.out.println("Welcome to ShopFlow!");
 
+        ProductCatalog catalog = new ProductCatalog();
+        catalog.addProduct("Laptop", new BigDecimal("55000.00"), 10);
+
         while ( isRunning) {
             System.out.println();
             System.out.println("=== ShopFlow ===");
@@ -27,12 +30,9 @@ public class Main {
 
             switch (choice) {
                 case 1 -> {
-                    Product laptop = new Product(1, "Laptop", new BigDecimal("55000.00"), 10);
-                    Product mouse = new Product(2, "Mouse", new BigDecimal("1500.00"), 10);
-                    Product keyboard = new Product(3, "Keyboard", new BigDecimal("12000.00"), 10);
-                    System.out.println(laptop);
-                    System.out.println(mouse);
-                    System.out.println(keyboard);
+                    for (Product product: catalog.getAllProducts()) {
+                        System.out.println(product);
+                    }
                 }
                 case 2 -> System.out.println("Coming soon");
                 case 0 -> {
