@@ -5,8 +5,8 @@ target/
 .idea/
 *.iml
 
-# Files the app saves while running (Phase 1, Step 12)
-data/
+# Local environment files
+.env
 
 # macOS
 .DS_Store

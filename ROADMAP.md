@@ -1,111 +1,60 @@
 # ShopFlow Roadmap
 
-Learning Java by building an online-shop backend, one phase at a time, until it covers everything in a Java Developer job description: Core Java, SQL and Oracle, Spring Boot, REST APIs, caching, microservices and Kafka.
+ShopFlow is an order-management backend in Java, built in 21 days (Mon Oct 26 to Sun Nov 15, 2026) after a 3-day warm-up. Tick each box (`[x]`) when you finish it.
 
-Tick each box (`[x]`) when you finish it. Total time: about 3 months.
-
-| Phase | Focus | Time |
+| Period | Dates | Hours per day |
 |---|---|---|
-| 0 | Setup | 1 day |
-| 1 | Core Java console app | 2–3 weeks |
-| 2 | SQL + Oracle (JDBC) | 1 week |
-| 3 | Spring Boot REST API | 2 weeks |
-| 4 | Caching + first React UI | 1.5 weeks |
-| 5 | Microservices | 2 weeks |
-| 6 | Kafka + event-driven | 2–2.5 weeks |
-| 7 | Production-readiness | 1 week |
-| 8 | CI/CD + polish | 3–4 days |
+| Warm-up | Fri Oct 23 to Sun Oct 25 | 2 (Fri), 4 (Sat, Sun) |
+| Week 1 | Mon Oct 26 to Sun Nov 1 | 5 |
+| Week 2 | Mon Nov 2 to Sun Nov 8 | 6 |
+| Week 3 | Mon Nov 9 to Sun Nov 15 | 6 |
 
-## Phase 0 — Setup (1 day)
-- [ ] Install Homebrew, Java 21 (Temurin), Maven and IntelliJ IDEA
-- [ ] Open `console-app` in IntelliJ and run `Main`
-- [ ] Set your Git name and email, and make your first commit
-- [ ] Create a free GitHub account and push this repo as a public repo
-- Later: Docker Desktop and DBeaver (Phase 2), Bruno (Phase 3), Node.js (Phase 4)
+Rules: commit every day; if a day runs over, finish it on that week's Sunday instead of skipping it.
 
-## Phase 1 — Core Java console app (2–3 weeks)
-Work in `console-app/` and follow [console-app/EXERCISES.md](console-app/EXERCISES.md).
-- [ ] Basics: data types, control flow, methods, arrays, Strings
-- [ ] OOP: classes, encapsulation, inheritance, polymorphism, abstraction, interfaces, `equals`/`hashCode`
-- [ ] Collections and generics: `ArrayList`, `HashMap` (and how it works inside), `HashSet`, `TreeMap`, `PriorityQueue`
-- [ ] Exceptions: checked vs unchecked, custom exceptions, try-with-resources
-- [ ] Modern Java: lambdas, Streams, `Optional`, records, enums, sealed types, pattern matching in `switch`
-- [ ] Design patterns: Strategy, Factory, Observer, Builder, Singleton
-- [ ] Files with `java.nio.file`
-- [ ] Concurrency: `ExecutorService`, race conditions, `synchronized`, atomics, locks, virtual threads
-- [ ] JVM: JDK vs JRE vs JVM, heap vs stack, garbage collection, String pool
-- [ ] JUnit tests
-- [ ] **Done when:** 100 customers buying the last 5 items at once never oversell, and your cart has passing tests
+## Warm-up (not counted in the 21 days)
+- [ ] **Fri Oct 23:** Java 21 is the default (`java -version`, `mvn -v`); Docker Desktop and Postman installed; `order-service` generated from start.spring.io (Maven, Java 21, Spring Web, Actuator); `GET /api/ping` returns 200; pushed to GitHub
+- [ ] **Sat Oct 24:** Core Java refresh: collections, how `HashMap` works, exceptions, lambdas, streams, `Optional`, records. Solve 15 stream exercises in a `java-practice/` folder
+- [ ] **Sun Oct 25:** Multithreading (`ExecutorService`, `CompletableFuture`, race conditions, `AtomicInteger`) and Maven basics (pom, scopes, lifecycle, wrapper)
 
-## Phase 2 — SQL + Oracle (1 week)
-Same `console-app/`, now saving to Oracle instead of files.
-- [ ] Oracle Database Free running in Docker (`gvenzl/oracle-free`), viewed with DBeaver
-- [ ] Tables `users`, `products`, `orders`, `order_items` with keys, constraints and indexes
-- [ ] JDBC: `PreparedStatement`, transactions, connection pool (HikariCP)
-- [ ] SQL practice: joins, `GROUP BY`/`HAVING`, subqueries, window functions, `EXPLAIN PLAN`
-- [ ] Oracle specifics: sequences, `FETCH FIRST`, one PL/SQL procedure
-- [ ] ACID, isolation levels, `SELECT ... FOR UPDATE`
-- [ ] **Done when:** placing an order saves it and reduces stock in one transaction, and a failure halfway rolls everything back
+## Week 1: order-service with JPA, PostgreSQL and tests
+- [ ] **Day 1 (Mon Oct 26):** Spring Boot core (DI, beans, profiles); layered structure; Product CRUD with an in-memory list
+- [ ] **Day 2 (Tue Oct 27):** PostgreSQL in Docker; Spring Data JPA; Product as an `@Entity`
+- [ ] **Day 3 (Wed Oct 28):** Customer, Order, OrderItem relationships; lazy vs eager; N+1 fix; Flyway migrations
+- [ ] **Day 4 (Thu Oct 29):** DTOs, `@Valid`, global error handler, pagination and sorting, Swagger UI
+- [ ] **Day 5 (Fri Oct 30):** `POST /orders` in one transaction; JPQL; index + `EXPLAIN ANALYZE` on 10,000 seeded orders
+- [ ] **Day 6 (Sat Oct 31):** JUnit 5 and Mockito unit tests; `@WebMvcTest` controller tests (15+ tests)
+- [ ] **Day 7 (Sun Nov 1):** Testcontainers integration test; JaCoCo coverage; README run steps; buffer
 
-## Phase 3 — Spring Boot REST API (2 weeks)
-- [ ] Spring core: dependency injection, beans, profiles, `application.yml`
-- [ ] REST endpoints: `/api/auth`, `/api/products`, `/api/cart`, `/api/orders`
-- [ ] DTOs, validation, `@ControllerAdvice` error handling, pagination and sorting
-- [ ] Spring Data JPA and Hibernate, the N+1 problem, `@Transactional`, Flyway
-- [ ] Spring Security with JWT, USER and ADMIN roles
-- [ ] Tests: Mockito, `@WebMvcTest`, `@SpringBootTest`, Testcontainers
-- [ ] Swagger/OpenAPI docs; call every endpoint from Bruno or Postman
-- [ ] **Done when:** register → log in → browse → order works through the API, with tests passing
-- [ ] **Start applying for jobs**
+## Week 2: security, Redis, Docker and CI/CD
+- [ ] **Day 8 (Mon Nov 2):** Spring Security filter chain; register with BCrypt; 401 without a token
+- [ ] **Day 9 (Tue Nov 3):** JWT login; ADMIN and CUSTOMER roles; `@PreAuthorize`; 401 and 403 tests
+- [ ] **Day 10 (Wed Nov 4):** Redis cache with `@Cacheable` and `@CacheEvict`
+- [ ] **Day 11 (Thu Nov 5):** `Idempotency-Key` on `POST /orders` stored in Redis; request id in every log line
+- [ ] **Day 12 (Fri Nov 6):** Multi-stage Dockerfile; `docker-compose.yml` with app, PostgreSQL and Redis
+- [ ] **Day 13 (Sat Nov 7):** GitHub Actions (build, test, image to GHCR); Jenkins in Docker with a `Jenkinsfile`
+- [ ] **Day 14 (Sun Nov 8):** Revision and buffer
 
-## Phase 4 — Caching + first React UI (1.5 weeks)
-- [ ] Redis cache: `@Cacheable`, `@CacheEvict`, TTL, invalidation, cache stampede
-- [ ] Bonus: write an LRU cache with `LinkedHashMap`
-- [ ] React app (Vite, JavaScript, MUI, Axios, React Router): login/register, product list, cart and checkout, admin
-- [ ] CORS, JWT on every request, one error format, a "Place order" that can't create duplicates
-- [ ] **Done when:** you can shop end-to-end in the browser, and the second product-list load skips the database
+## Week 3: Kafka, microservices, monitoring and Kubernetes
+- [ ] **Day 15 (Mon Nov 9):** Maven multi-module; Kafka in Compose (KRaft); `order-service` publishes `OrderPlaced`
+- [ ] **Day 16 (Tue Nov 10):** `notification-service` consumes `OrderPlaced` and saves to MongoDB
+- [ ] **Day 17 (Wed Nov 11):** Retries, dead-letter topic, idempotent consumer; Kafka Testcontainers test
+- [ ] **Day 18 (Thu Nov 12):** `api-gateway` (Spring Cloud Gateway); `RestClient` call with a Resilience4j circuit breaker
+- [ ] **Day 19 (Fri Nov 13):** Actuator, Prometheus and Grafana dashboard
+- [ ] **Day 20 (Sat Nov 14):** Kubernetes basics with kind or minikube; deploy `order-service` and PostgreSQL
+- [ ] **Day 21 (Sun Nov 15):** README with architecture diagram and screenshots; tag `v1.0`; 2-minute demo; resume bullets
 
-## Phase 5 — Microservices (2 weeks)
-- [ ] Split into `api-gateway`, `user-service`, `product-service`, `order-service`, `inventory-service`, `payment-service`, `notification-service`
-- [ ] One database schema per service
-- [ ] Spring Cloud Gateway, Eureka, Config Server, OpenFeign
-- [ ] Resilience4j: circuit breaker, retry, timeout, fallback
-- [ ] Docker Compose for everything
-- [ ] **Done when:** `docker compose up` starts it all, and stopping `inventory-service` doesn't crash `order-service`
+## Repo layout by Nov 15
+```
+shopflow/
+├── pom.xml                  (parent, from Day 15)
+├── order-service/
+├── notification-service/
+├── api-gateway/
+├── docker-compose.yml
+├── Jenkinsfile
+├── k8s/
+└── .github/workflows/
+```
 
-## Phase 6 — Kafka + event-driven (2–2.5 weeks)
-- [ ] Order flow as events: `OrderPlaced` → `StockReserved` → `PaymentCompleted`
-- [ ] Topics, partitions, keys, consumer groups, offsets, KRaft
-- [ ] Delivery guarantees, idempotent consumers, retries, dead-letter topics
-- [ ] Saga with compensation (payment fails → stock released → order cancelled)
-- [ ] Outbox pattern
-- [ ] "My Orders" screen with live status through Server-Sent Events
-- [ ] Optional: one flow with RabbitMQ, to compare
-- [ ] **Done when:** an order placed in the browser reaches CONFIRMED live, and a forced payment failure shows CANCELLED and restores stock
-
-## Phase 7 — Production-readiness (1 week)
-- [ ] Correlation IDs in logs; tracing with Micrometer Tracing and Zipkin
-- [ ] Actuator health checks; Prometheus and Grafana dashboard
-- [ ] Load test with k6 or JMeter; tune indexes, cache and pools
-- [ ] Rate limiting at the gateway
-- [ ] **Done when:** you have a before/after performance number to quote
-
-## Phase 8 — CI/CD + polish (3–4 days)
-- [ ] GitHub Actions: build → test → Docker images
-- [ ] Multi-stage Dockerfiles; React UI served by nginx
-- [ ] Work tracked on a GitHub Projects board
-- [ ] README: architecture diagram, one-command setup, screenshots or GIF, design decisions
-- [ ] Demo video (Cmd+Shift+5, uploaded to YouTube as unlisted)
-- [ ] **Done when:** a stranger can clone the repo and run everything with `docker compose up`
-
-## Every day, alongside
-- 1–2 DSA problems (NeetCode 150 or Striver's SDE Sheet)
-- A bug diary: every bug you hit and how you fixed it
-- After each phase, explain out loud what you built, why, and the trade-offs
-
-## Free resources
-- Java from zero: [java-programming.mooc.fi](https://java-programming.mooc.fi), [dev.java/learn](https://dev.java/learn/)
-- Spring Boot: [spring.io/guides](https://spring.io/guides), [baeldung.com](https://www.baeldung.com)
-- Kafka: [developer.confluent.io](https://developer.confluent.io) (Kafka 101)
-- SQL: LeetCode "SQL 50"
-- Video courses: freeCodeCamp on YouTube
+## Tools
+JDK 21 (Temurin), IntelliJ IDEA, Maven, Docker Desktop, Postman, TablePlus (PostgreSQL, Redis, MongoDB), Git and GitHub CLI.
