@@ -12,8 +12,8 @@ ShopFlow is an order-management backend in Java, built in 21 days (Mon Oct 26 to
 Rules: commit every day; if a day runs over, finish it on that week's Sunday instead of skipping it.
 
 ## Warm-up (not counted in the 21 days)
-- [ ] **Fri Oct 23:** Java 21 is the default (`java -version`, `mvn -v`); Docker Desktop and Postman installed; `order-service` generated from start.spring.io (Maven, Java 21, Spring Web, Actuator); `GET /api/ping` returns 200; pushed to GitHub
-- [ ] **Sat Oct 24:** Core Java refresh: collections, how `HashMap` works, exceptions, lambdas, streams, `Optional`, records. Solve 15 stream exercises in a `java-practice/` folder
+- [x] **Fri Oct 23:** Java 21 is the default (`java -version`, `mvn -v`); Docker Desktop and Postman installed; `order-service` generated from start.spring.io (Maven, Java 21, Spring Web, Actuator); `GET /api/ping` returns 200; pushed to GitHub
+- [x] **Sat Oct 24:** Core Java refresh: collections, how `HashMap` works, exceptions, lambdas, streams, `Optional`, records. Solve 15 stream exercises in a `java-practice/` folder
 - [ ] **Sun Oct 25:** Multithreading (`ExecutorService`, `CompletableFuture`, race conditions, `AtomicInteger`) and Maven basics (pom, scopes, lifecycle, wrapper)
 
 ## Week 1: order-service with JPA, PostgreSQL and tests
